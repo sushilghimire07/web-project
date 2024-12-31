@@ -1,0 +1,20 @@
+{
+  "name": "expressweb",
+  "version": "1.0.0",
+  "description": "this is wether website ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "yo",
+    "bto"
+  ],
+  "author": "Sushil Ghimire",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "hbs": "^4.2.0",
+    "node-fetch": "^2.7.0"
+  }
+}

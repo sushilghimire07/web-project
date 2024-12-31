@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> titles title="404 Error" description="Page Not Found"}}
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .error-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full screen height */
+            background: url('/images/xx.jpg') no-repeat center center/cover; /* Fullscreen background image */
+        }
+
+        .error-message {
+            position: absolute;
+            bottom: 50px; /* Position the content 50px from the bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Center align horizontally */
+            background: rgba(0, 0, 0, 0.5); /* Transparent background for readability */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .error-message h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #FF5733;
+        }
+
+        .error-message p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .error-message .btn {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    {{> navbar}}
+
+    <div class="error-container">
+        <div class="error-message">
+            <h1>Oops! Page Not Found</h1>
+            <p>The page you are looking for does not exist or an error occurred.</p>
+            <a href="/" class="btn btn-primary">Go Back Home</a>
+        </div>
+    </div>
+
+    {{> footer}}
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>titles}}
+    <title>Weather</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+        /* Wrap the weather section in a specific class to avoid affecting global styles */
+        .weather-section {
+            padding: 20px;
+            background-color: #eef2f7; /* Light greyish background */
+        }
+
+        /* Weather Card */
+        .weather-section .card {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Reduced width */
+            margin: 30px auto;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .weather-section .search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .weather-section .search input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            width: 60%;
+        }
+
+        .weather-section .search input:focus {
+            border-color: #56c0e7; /* Light blue */
+            outline: none;
+        }
+
+        .weather-section .search button {
+            background-color: #56c0e7; /* Light blue */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 16px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        .weather-section .search button:hover {
+            background-color: #4ca3d6; /* Darker blue */
+        }
+
+        /* Weather Display */
+        .weather-section .weather {
+            text-align: center;
+        }
+
+        .weather-section .weather h1.temp {
+            font-size: 50px; /* Smaller font size */
+            color: #333;
+            font-weight: 500;
+            margin: 8px 0;
+        }
+
+        .weather-section .weather h2.city {
+            font-size: 24px; /* Smaller city name */
+            color: #777;
+        }
+
+        .weather-section .weather-icon {
+            width: 120px; /* Smaller icon size */
+            height: 120px;
+            margin: 15px auto;
+        }
+
+        /* Weather Details Styling */
+        .weather-section .weather .details {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+        }
+
+        .weather-section .weather .details .col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 12px;
+            border-radius: 20px;
+            background-color: #000000; /* Light grey background */
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            width: 100px; /* Smaller column width */
+            transition: transform 0.3s ease-in-out;
+            margin: 20px;
+            
+        }
+
+        .weather-section .weather .details .col:hover {
+            transform: scale(1.05);
+        }
+
+        .weather-section .weather .details p {
+            margin: 8px 0;
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .weather-section .weather .details .text {
+            font-size: 20px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* Error Message */
+        .weather-section .weather .error {
+            color: #e74c3c; /* Red */
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Animation for Weather Section */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    {{>navbar}}
+
+    <div class="weather-section">
+        <div class="card">
+            <div class="search">
+                <input type="text" id="cityInput" placeholder="Enter city or country name" />
+                <button id="searchButton">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+
+            {{#if error}}
+                <div class="error">
+                    <p>{{error}}</p>
+                </div>
+            {{/if}}
+
+            {{#if weather}}
+                <div class="weather">
+                    <img src="{{weather.weatherIcon}}" class="weather-icon" />
+                    <h1 class="temp">{{weather.temp}}°C</h1>
+                    <h2 class="city">{{weather.city}}</h2>
+                    <div class="details">
+                        <div class="col">
+                            <img src="images/humidity.png" />
+                            <p class="humidity">{{weather.humidity}}%</p>
+                            <p class="text">Humidity</p>
+                        </div>
+                        <div class="col">
+                            <img src="images/wind.png" />
+                            <p class="wind">{{weather.windSpeed}} km/h</p>
+                            <p class="text">Wind Speed</p>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+
+            
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const city = document.getElementById("cityInput").value;
+            window.location.href = `/weather-data?city=${city}`;
+        });
+    </script>
+    <footer>
+                {{>footer}}
+            </footer>
+</body>
+</html>
